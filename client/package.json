@@ -1,0 +1,23 @@
+{
+  "name": "surge-ui",
+  "version": "1.0.0",
+  "description": "User interface for surge application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/decadevs/surge.git"
+  },
+  "keywords": [
+    "UI",
+    "Surge"
+  ],
+  "author": "Decagon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/decadevs/surge/issues"
+  },
+  "homepage": "https://github.com/decadevs/surge#readme"
+}

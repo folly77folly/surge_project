@@ -1,0 +1,9 @@
+# Files
+.env
+.DS_Store
+
+# Folders
+__pycache__/
+.vscode/
+venv/
+tmp/
