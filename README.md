@@ -1,3 +1,2 @@
 # surge
-A minimalist application for skills ratings for Decagon
-
+A simple application for skills rating at Decagon
