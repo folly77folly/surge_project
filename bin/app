@@ -3,19 +3,21 @@
 COMMAND="$1"
 ROOTDIR="$(dirname $(dirname $0))"
 
+source "$ROOTDIR/bin/env"
+source "$ROOTDIR/bin/support"
+
 cd $ROOTDIR
 cd app
 
 # Initialize a virtual environment
 
 if [ "$COMMAND" == "venv" ]; then
-    if [ ! -d "venv" ]; then
-        virtualenv venv
+    bindir="$(venv_bindir)"
 
-        if [ -f "requirements.txt" ]; then
-            source venv/bin/activate
-            pip install -r requirements.txt
-        fi
+    if [ ! -d "venv" ] && [ -f "requirements.txt" ] && [ "$bindir" ]; then
+        virtualenv venv
+        source "venv/$bindir/activate"
+        pip install -r requirements.txt
     fi
 
 # Install dependencies

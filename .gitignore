@@ -1,6 +1,7 @@
 # Files
 .env
 .DS_Store
+/bin/env
 
 # Folders
 __pycache__/
