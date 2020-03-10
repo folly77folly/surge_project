@@ -1,0 +1,13 @@
+#!/bin/bash
+
+COMMAND="$1"
+ROOTDIR="$(dirname $(dirname $0))"
+
+cd $ROOTDIR
+cd client/ratings
+
+# Initialize and startup the ratings client server
+
+if [ "$COMMAND" == "run" ]; then
+    npm start
+fi

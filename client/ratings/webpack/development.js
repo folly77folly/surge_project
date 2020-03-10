@@ -13,6 +13,6 @@ module.exports = webpackMerge(common, {
         writeToDisk: true,
         watchContentBase: true,
         watchOptions: { poll: true },
-        contentBase: path.resolve(__dirname, '..', '..', '..', 'public')
+        contentBase: path.resolve(__dirname, '..', 'public')
     }
 });

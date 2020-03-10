@@ -1,27 +1,19 @@
-# Random Files
+# Files
+.env
 .DS_Store
 
-# Random Folders
+# Folders
+venv/
 .vscode/
+__pycache__/
+node_modules/
 
-# Bin Files
-/bin/env
+# Specifics
+bin/env
 
-# Public Files
-/public/js/**/*
-!/public/js/.keep
+client/**/public/js/**/*
+!client/**/public/js/.keep
 
-# Client Files
-/client/.env
+server/tmp/**/*
+!server/tmp/.keep
 
-# Client Folders
-/client/node_modules/
-
-# Server Files
-/server/tmp/**/*
-!/server/tmp/.keep
-/server/.env
-
-# Server Folders
-/server/venv/
-/server/**/__pycache__/
