@@ -1,9 +1,9 @@
 import React from 'react';
 
 const App = () => (
-    <h2 style={{textAlign: 'center', marginTop: '7em'}}>
-        Welcome to Surge UI
-    </h2>
+    <h1 style={{textAlign: 'center', marginTop: '6em'}}>
+        Surge: Decagon Internal Tool
+    </h1>
 );
 
 export default App;
