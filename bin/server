@@ -1,22 +1,33 @@
 #!/bin/bash
 
+function bindir {
+    if [ "$PLATFORM" == "linux" ]; then
+        echo "bin"
+    elif [ "$PLATFORM" == "windows" ]; then
+        echo "Scripts"
+    else
+        echo ""
+    fi
+}
+
+# Script instructions
+
 COMMAND="$1"
 ROOTDIR="$(dirname $(dirname $0))"
 
 source "$ROOTDIR/bin/env"
-source "$ROOTDIR/bin/support"
 
 cd $ROOTDIR
-cd app
+cd server
 
 # Initialize a virtual environment
 
-if [ "$COMMAND" == "venv" ]; then
-    bindir="$(venv_bindir)"
+if [ "$COMMAND" == "setup" ]; then
+    BINDIR="$(bindir)"
 
-    if [ ! -d "venv" ] && [ -f "requirements.txt" ] && [ "$bindir" ]; then
+    if [ ! -d "venv" ] && [ -f "requirements.txt" ] && [ "$BINDIR" ]; then
         virtualenv venv
-        source "venv/$bindir/activate"
+        source "venv/$BINDIR/activate"
         pip install -r requirements.txt
     fi
 
