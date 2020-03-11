@@ -1,0 +1,5 @@
+#!/bin/bash
+
+function absname () {
+    echo "$(cd $(dirname $1) && pwd)"
+}

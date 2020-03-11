@@ -17,3 +17,4 @@ client/**/public/js/**/*
 server/tmp/**/*
 !server/tmp/.keep
 
+server/ratings/static/

@@ -1,13 +1,37 @@
 #!/bin/bash
 
+source bin/support
+
 COMMAND="$1"
-ROOTDIR="$(dirname $(dirname $0))"
+ROOTDIR="$(dirname $(absname $0))"
 
 cd $ROOTDIR
-cd client/ratings
 
 # Initialize and startup the ratings client server
 
-if [ "$COMMAND" == "run" ]; then
+if [ "$COMMAND" == "serve:client" ]; then
+    cd client/ratings
     npm start
+
+# Build client content base into server static path
+
+elif [ "$COMMAND" == "build:client" ]; then
+    PUBLIC_PATH="$ROOTDIR/client/ratings/public"
+    STATIC_PATH="$ROOTDIR/server/ratings/static"
+
+    if [ -d $STATIC_PATH ]; then
+        rm -rf $STATIC_PATH
+    fi
+
+    mkdir $STATIC_PATH
+
+    # Write bundle file to disk
+    cd client/ratings
+    npm run build
+
+    # Move or copy selected public folder content into static folder
+    cd $ROOTDIR
+    mv $PUBLIC_PATH/js $STATIC_PATH/js
+    cp $PUBLIC_PATH/index.html $STATIC_PATH/index.html
+
 fi

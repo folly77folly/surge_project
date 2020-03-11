@@ -7,10 +7,12 @@ module.exports = webpackMerge(common, {
     devtool: 'eval-source-map',
     devServer: {
         port: 7100,
+        host: '127.0.0.1',
         hot: true,
         hotOnly: true,
         compress: true,
-        writeToDisk: true,
+        writeToDisk: false,
+        publicPath: '/static/ratings/js/',
         watchContentBase: true,
         watchOptions: { poll: true },
         contentBase: path.resolve(__dirname, '..', 'public')
