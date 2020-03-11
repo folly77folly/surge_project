@@ -3,3 +3,10 @@
 function absname () {
     echo "$(cd $(dirname $1) && pwd)"
 }
+
+function bindir {
+    if [ "$PLATFORM" == "linux" ]; then echo "bin";
+    elif [ "$PLATFORM" == "windows" ]; then echo "Scripts";
+    else echo "";
+    fi
+}

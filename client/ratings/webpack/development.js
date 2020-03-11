@@ -12,7 +12,6 @@ module.exports = webpackMerge(common, {
         hotOnly: true,
         compress: true,
         writeToDisk: false,
-        publicPath: '/static/ratings/js/',
         watchContentBase: true,
         watchOptions: { poll: true },
         contentBase: path.resolve(__dirname, '..', 'public')
