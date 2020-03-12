@@ -1,0 +1,19 @@
+#!/bin/bash
+
+ROOTDIR="$1"
+
+cd $ROOTDIR
+
+PUBLIC_PATH="$ROOTDIR/client/ratings/public"
+STATIC_PATH="$ROOTDIR/server/ratings/static/ratings"
+
+cd $ROOTDIR/client/ratings
+npm run build
+
+printf "\n[*] Moving content between source and target\n"
+printf "   - Source: $PUBLIC_PATH\n   - Target: $STATIC_PATH\n"
+
+cd $ROOTDIR
+mv $PUBLIC_PATH/js $STATIC_PATH/js
+
+printf "\n[*] Ratings static directory setup complete\n\n"

@@ -18,8 +18,8 @@ if [ $APP == "server" ]; then
     elif [ $CMD == "install" ]; then
         bin/lib/ratings/server-install $ROOTDIR ${@:2}
 
-    elif [ $CMD == "static" ]; then
-        bin/lib/ratings/server-static $ROOTDIR
+    elif [ $CMD == "build" ]; then
+        bin/lib/ratings/server-build $ROOTDIR
 
     else
         printf "\n[*] Invalid server command specified\n\n"
