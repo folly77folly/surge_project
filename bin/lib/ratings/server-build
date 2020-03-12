@@ -14,6 +14,8 @@ printf "\n[*] Moving content between source and target\n"
 printf "   - Source: $PUBLIC_PATH\n   - Target: $STATIC_PATH\n"
 
 cd $ROOTDIR
+
+if [ -d $PUBLIC_PATH/js ]; then rm -rf $PUBLIC_PATH/js; fi
 mv $PUBLIC_PATH/js $STATIC_PATH/js
 
 printf "\n[*] Ratings static directory setup complete\n\n"
