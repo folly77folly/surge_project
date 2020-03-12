@@ -4,5 +4,6 @@ ROOTDIR="$1"
 
 cd $ROOTDIR/server
 
+$ROOTDIR/bin/lib/ratings/server-build $ROOTDIR
 python manage.py migrate
 python manage.py runserver 0.0.0.0:7200
