@@ -9,7 +9,10 @@ CMD="$2"
 
 if [ $APP == "server" ]; then
 
-    if [ $CMD == "serve" ]; then
+    if [ $CMD == "setup" ]; then
+        bin/lib/ratings/server-setup $ROOTDIR
+
+    elif [ $CMD == "serve" ]; then
         bin/lib/ratings/server-serve $ROOTDIR
 
     elif [ $CMD == "venv" ]; then

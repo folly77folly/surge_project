@@ -1,0 +1,7 @@
+#!/bin/bash
+
+ROOTDIR="$1"
+
+$ROOTDIR/bin/lib/ratings/server-venv $ROOTDIR
+$ROOTDIR/bin/lib/ratings/server-build $ROOTDIR
+$ROOTDIR/bin/lib/ratings/server-serve $ROOTDIR
