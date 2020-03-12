@@ -1,8 +1,6 @@
 #!/bin/bash
 
-function absname () {
-    echo "$(cd $(dirname $1) && pwd)"
-}
+source bin/env
 
 function bindir {
     if [ "$PLATFORM" == "linux" ]; then echo "bin";

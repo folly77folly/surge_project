@@ -1,119 +1,41 @@
 #!/bin/bash
 
-source bin/env
-source bin/support
+ROOTDIR="$(dirname $(cd $(dirname $0) && pwd))"
 
 APP="$1"
-COMMAND="$2"
-ROOTDIR="$(dirname $(absname $0))"
-
-cd $ROOTDIR
+CMD="$2"
 
 # Handle server commands
 
-if [ "$APP" == "server" ]; then
+if [ $APP == "server" ]; then
 
-    # Start django development server
+    if [ $CMD == "serve" ]; then
+        bin/lib/ratings/server-serve $ROOTDIR
 
-    if [ "$COMMAND" == "serve" ]; then
-        cd server
-        python manage.py migrate
-        python manage.py runserver 0.0.0.0:7200
+    elif [ $CMD == "venv" ]; then
+        bin/lib/ratings/server-venv $ROOTDIR
 
-    # Initialize server virtual environment
+    elif [ $CMD == "install" ]; then
+        bin/lib/ratings/server-install $ROOTDIR ${@:2}
 
-    elif [ "$COMMAND" == "venv" ]; then
-        cd server
-        BINDIR="$(bindir)"
-
-        printf "\n[*] Removing exisiting virtual environment"
-        if [ -d "venv" ]; then rm -rf venv; fi
-
-        if [ -f "requirements.txt" ] && [ "$BINDIR" ]; then
-            printf "\n[*] Creating and setting up a new virtual environment\n\n"
-
-            virtualenv venv
-            source "venv/$BINDIR/activate"
-            pip install -r requirements.txt
-
-            printf "\n[*] Virtual environment setup complete\n\n"
-        else
-            printf "\n[*] Virtual environment setup failed\n\n"
-        fi
-
-    # Installing selected or all dependencies
-
-    elif [ "$COMMAND" == "install" ]; then
-        cd server
-        BINDIR="$(bindir)"
-
-        if [ -d "venv" ] && [ "$BINDIR" ]; then
-            source "venv/$BINDIR/activate"
-
-            ARGS="${@:3}"
-
-            if [ ! "$ARGS" ] && [ -f "requirements.txt" ]; then
-                pip install -r requirements.txt
-
-            elif [ "$ARGS" ]; then
-                pip install $ARGS
-                pip freeze > requirements.txt
-
-            fi
-        fi
-
-    # Collect static from client
-
-    elif [ "$COMMAND" == "static" ]; then
-        cd $ROOTDIR
-
-        PUBLIC_PATH="$ROOTDIR/client/ratings/public"
-        STATIC_PATH="$ROOTDIR/server/ratings/static"
-
-        printf "\n[*] Initializing server/ratings/static directory\n\n"
-    
-        if [ -d $STATIC_PATH ]; then
-            rm -rf $STATIC_PATH
-        fi
-
-        mkdir $STATIC_PATH
-
-        cd client/ratings
-        npm run build
-
-        printf "\n[*] Moving content from client/public into server/ratings/static"
-        cd $ROOTDIR
-        mv $PUBLIC_PATH/js $STATIC_PATH/js
-        cp $PUBLIC_PATH/index.html $STATIC_PATH/index.html
-
-        printf "\n[*] Static directory setup complete\n\n"
-
-    # Handle unknown commands
+    elif [ $CMD == "static" ]; then
+        bin/lib/ratings/server-static $ROOTDIR
 
     else
         printf "\n[*] Invalid server command specified\n\n"
-    fi
 
+    fi
 
 # Handle client commands
 
 elif [ "$APP" == "client" ]; then
 
-    # Serve client application
-
-    if [ "$COMMAND" == "serve" ]; then
-        cd client/ratings
-        npm start
-
-    # Handle unknown commands
+    if [ $CMD == "serve" ]; then
+        bin/lib/ratings/client-serve $ROOTDIR
 
     else
         printf "\n[*] Invalid client command specified\n\n"
+
     fi
 
-
-# Handle unknown specified app name
-
-else
-    printf "\n[*] Invalid application name specified\n\n"
 fi

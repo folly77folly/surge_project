@@ -1,0 +1,7 @@
+#!/bin/bash
+
+ROOTDIR="$1"
+
+cd $ROOTDIR/client/ratings
+
+npm start
