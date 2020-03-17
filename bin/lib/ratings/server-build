@@ -4,8 +4,9 @@ ROOTDIR="$1"
 
 cd $ROOTDIR
 
-PUBLIC_PATH="$ROOTDIR/client/ratings/public"
-STATIC_PATH="$ROOTDIR/server/ratings/static/ratings"
+RATINGS_CLIENT_PATH="$ROOTDIR/client/ratings"
+PUBLIC_PATH="$RATINGS_CLIENT_PATH/public"
+STATIC_PATH="$ROOTDIR/server/static/ratings"
 
 printf "\n[*] Cleaning up source and destination\n"
 
@@ -20,7 +21,12 @@ fi
 printf "\n[*] Building client assets\n"
 
 cd $ROOTDIR/client/ratings
-npm run build
+
+if [ ! -d "$RATINGS_CLIENT_PATH/node_modules" ]; then
+    yarn install
+fi
+
+yarn build
 
 printf "\n[*] Moving content between source and target\n"
 printf "   - Source: $PUBLIC_PATH\n   - Target: $STATIC_PATH\n"
