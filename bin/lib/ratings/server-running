@@ -1,0 +1,12 @@
+#!/bin/bash
+
+ROOTDIR="$1"
+
+source $ROOTDIR/bin/lib/support
+
+BINDIR="$(bindir)"
+
+cd $ROOTDIR/server/ratings/tests
+
+python "server.py"
+

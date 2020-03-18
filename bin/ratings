@@ -24,6 +24,9 @@ if [ $APP == "server" ]; then
     elif [ $CMD == "build" ]; then
         bin/lib/ratings/server-build $ROOTDIR
 
+    elif [ $CMD == "checkserver" ]; then
+      bin/lib/ratings/server-running $ROOTDIR
+
     else
         printf "\n[*] Invalid server command specified\n\n"
 

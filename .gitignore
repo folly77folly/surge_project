@@ -21,3 +21,11 @@ server/static/ratings/js/
 
 server/staticfiles/**/*
 !server/staticfiles/.keep
+.idea/.gitignore
+.idea/inspectionProfiles/
+.idea/misc.xml
+.idea/modules.xml
+.idea/surge.iml
+.idea/vcs.xml
+server/Pipfile
+server/Pipfile.lock
