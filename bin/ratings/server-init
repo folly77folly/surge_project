@@ -1,0 +1,21 @@
+#!/bin/bash
+
+ROOTDIR="$1"
+
+source $ROOTDIR/bin/support
+
+BINDIR="$(bindir)"
+
+cd $ROOTDIR/server
+
+printf "\n[*] Removing exisiting virtual environment"
+if [ -d "venv" ]; then rm -rf venv; fi
+
+printf "\n[*] Creating up a new virtual environment\n\n"
+virtualenv venv
+
+printf "\n[*] Installing dependencies in requirements.txt\n\n"
+source venv/$BINDIR/activate
+pip install -r requirements.txt
+
+$ROOTDIR/bin/ratings/script server serve
