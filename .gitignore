@@ -22,3 +22,6 @@ server/static/ratings/js/
 
 server/staticfiles/**/*
 !server/staticfiles/.keep
+
+# test snapshots
+__snapshots__/
