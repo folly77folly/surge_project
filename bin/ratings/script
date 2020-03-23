@@ -38,7 +38,7 @@ elif [ "$APP" == "client" ]; then
         $ROOTDIR/bin/ratings/client-install $ROOTDIR ${@:2}
 
     elif [ $CMD == "serve" ]; then
-        cd $ROOTDIR/client/ratings
+        cd $ROOTDIR/client
         yarn start
 
     fi

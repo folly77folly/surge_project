@@ -1,13 +1,10 @@
 # Files
-.env
 *.log
 .DS_Store
 
 # Folders
-venv/
 .vscode/
 __pycache__/
-node_modules/
 
 # Specifics
 bin/env
@@ -15,6 +12,8 @@ bin/env
 client/**/public/js/**/*
 !client/**/public/js/.keep
 
+server/venv/
+server/.env
 server/tmp/**/*
 !server/tmp/.keep
 

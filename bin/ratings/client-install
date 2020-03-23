@@ -2,7 +2,7 @@
 
 ROOTDIR="$1"
 
-cd $ROOTDIR/client/ratings
+cd $ROOTDIR/client
 
 if [ -f "package.json" ]; then
 
