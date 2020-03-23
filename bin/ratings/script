@@ -1,0 +1,51 @@
+#!/bin/bash
+
+ROOTDIR="$(dirname $(dirname $(cd $(dirname $0) && pwd)))"
+
+APP="$1"
+CMD="$2"
+
+# Handle server commands
+
+if [ $APP == "server" ]; then
+
+    if [ ! $CMD ]; then
+        $ROOTDIR/bin/ratings/script server serve
+
+    elif [ $CMD == "init" ]; then
+        $ROOTDIR/bin/ratings/server-init $ROOTDIR
+
+    elif [ $CMD == "install" ]; then
+        $ROOTDIR/bin/ratings/server-install $ROOTDIR ${@:2}
+
+    elif [ $CMD == "serve" ]; then
+        $ROOTDIR/bin/ratings/server-serve $ROOTDIR
+
+    fi
+
+# Handle client commands
+
+elif [ "$APP" == "client" ]; then
+
+    if [ ! $CMD ]; then
+        $ROOTDIR/bin/ratings/script client serve
+
+    elif [ $CMD == "init" ]; then
+        $ROOTDIR/bin/ratings/script client install
+        $ROOTDIR/bin/ratings/script client serve
+
+    elif [ $CMD == "install" ]; then
+        $ROOTDIR/bin/ratings/client-install $ROOTDIR ${@:2}
+
+    elif [ $CMD == "serve" ]; then
+        cd $ROOTDIR/client
+        yarn start
+
+    fi
+
+# Handle invalid command structure
+
+else
+    printf "\n[usage] bin/{dir}/script {app} {command} {args?}\n\n"
+
+fi

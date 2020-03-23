@@ -1,7 +1,0 @@
-#!/bin/bash
-
-ROOTDIR="$1"
-
-cd $ROOTDIR/client/ratings
-
-yarn start

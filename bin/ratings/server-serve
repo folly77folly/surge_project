@@ -1,0 +1,13 @@
+#!/bin/bash
+
+ROOTDIR="$1"
+
+cd $ROOTDIR/server
+
+$ROOTDIR/bin/ratings/server-static $ROOTDIR
+
+printf "\n[*] Creating and running migrations\n\n"
+python manage.py makemigrations
+python manage.py migrate
+
+python manage.py runserver 0.0.0.0:7200

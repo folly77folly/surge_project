@@ -1,0 +1,21 @@
+#!/bin/bash
+
+ROOTDIR="$1"
+
+cd $ROOTDIR/client
+
+if [ -f "package.json" ]; then
+
+    ARGS="${@:3}"
+
+    echo $ARGS
+
+    if [ ! "$ARGS" ]; then
+        yarn
+
+    elif [ "$ARGS" ]; then
+        yarn add $ARGS
+
+    fi
+
+fi

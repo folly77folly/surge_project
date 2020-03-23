@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Not compatible with the current CRA
+
+exit
+
+ROOTDIR="$1"
+
+cd $ROOTDIR
+
+CLIENT_PATH="$ROOTDIR/client/ratings"
+STATIC_PATH="$ROOTDIR/server/static/ratings"
+
+printf "\n[*] Cleaning filesystem for building static files"
+if [ -d "$STATIC_PATH/js" ]; then rm -rf "$STATIC_PATH/js"; fi
+if [ -d "$CLIENT_PATH/public/js" ]; then rm -rf "$CLIENT_PATH/public/js"; fi
+
+printf "\n[*] Generating client assets\n\n"
+cd $CLIENT_PATH
+yarn build
+
+printf "\n[*] Moving content between source and target\n"
+printf "   - Source: $CLIENT_PATH/public\n   - Target: $STATIC_PATH\n"
+cd $ROOTDIR
+mv "$CLIENT_PATH/public/js" "$STATIC_PATH/js"
