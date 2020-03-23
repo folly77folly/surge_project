@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Not compatible with the current CRA
+
+exit
+
 ROOTDIR="$1"
 
 cd $ROOTDIR
