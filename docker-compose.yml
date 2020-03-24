@@ -1,0 +1,36 @@
+version: "3"
+services:
+    db:
+        image: mongo
+        environment:
+            - MONGO_URI=mongodb://db:27017/surgedb
+        ports:
+            - 27017:27017
+        # volumes:
+        #     - surgedb:/data
+
+    server:
+        build: 
+            context: ./server
+        # volumes:
+        #     - server:/app
+        ports:
+            - "7200:7200"
+        env_file: server/.env
+        command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:7200"
+        depends_on: 
+            - db
+           
+    client:
+        build: 
+            context: ./client/ratings
+        # volumes:
+        #     - ./client/ratings:/app
+        ports:
+            - "7100:7100"
+        env_file: client/ratings/.env
+        depends_on:
+            - server
+        command: yarn start
+# volumes: 
+#     - surgedb
