@@ -17,7 +17,5 @@ server/.env
 server/tmp/**/*
 !server/tmp/.keep
 
-server/static/ratings/js/
-
 server/staticfiles/**/*
 !server/staticfiles/.keep
