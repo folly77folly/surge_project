@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ROOTDIR="$(dirname $(dirname $(cd $(dirname $0) && pwd)))"
+ROOTDIR="$(dirname $(cd $(dirname $0) && pwd))"
 
 APP="$1"
 CMD="$2"
@@ -10,16 +10,16 @@ CMD="$2"
 if [ $APP == "server" ]; then
 
     if [ ! $CMD ]; then
-        $ROOTDIR/bin/ratings/script server serve
+        $ROOTDIR/bin/app server serve
 
     elif [ $CMD == "init" ]; then
-        $ROOTDIR/bin/ratings/server-init $ROOTDIR
+        $ROOTDIR/bin/server-init $ROOTDIR
 
     elif [ $CMD == "install" ]; then
-        $ROOTDIR/bin/ratings/server-install $ROOTDIR ${@:2}
+        $ROOTDIR/bin/server-install $ROOTDIR ${@:2}
 
     elif [ $CMD == "serve" ]; then
-        $ROOTDIR/bin/ratings/server-serve $ROOTDIR
+        $ROOTDIR/bin/server-serve $ROOTDIR
 
     fi
 
@@ -28,14 +28,14 @@ if [ $APP == "server" ]; then
 elif [ "$APP" == "client" ]; then
 
     if [ ! $CMD ]; then
-        $ROOTDIR/bin/ratings/script client serve
+        $ROOTDIR/bin/app client serve
 
     elif [ $CMD == "init" ]; then
-        $ROOTDIR/bin/ratings/script client install
-        $ROOTDIR/bin/ratings/script client serve
+        $ROOTDIR/bin/app client install
+        $ROOTDIR/bin/app client serve
 
     elif [ $CMD == "install" ]; then
-        $ROOTDIR/bin/ratings/client-install $ROOTDIR ${@:2}
+        $ROOTDIR/bin/client-install $ROOTDIR ${@:2}
 
     elif [ $CMD == "serve" ]; then
         cd $ROOTDIR/client

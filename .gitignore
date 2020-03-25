@@ -17,5 +17,8 @@ server/.env
 server/tmp/**/*
 !server/tmp/.keep
 
+server/ratings/static/ratings/**/*
+!server/ratings/static/ratings/.keep
+
 server/staticfiles/**/*
 !server/staticfiles/.keep
