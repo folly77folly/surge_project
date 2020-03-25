@@ -2,10 +2,6 @@
 
 Include a summary of the problem and which issue is fixed. List any dependencies that are required for this change.
 
-**How did you fix it?**
-
-...
-
 ## Related - Jira Link
 
 Provide the link from jira e.g [click here to check](https://iworkedontask/example.com)
