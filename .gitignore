@@ -12,12 +12,10 @@ bin/env
 server/venv/
 server/.env
 server/tmp/**/*
-!server/tmp/.keep
-
-server/ratings/static/ratings/**/*
-!server/ratings/static/ratings/.keep
-
-server/ratings/templates/ratings/**/*
 
 server/staticfiles/**/*
-!server/staticfiles/.keep
+server/ratings/static/ratings/**/*
+server/ratings/templates/ratings/**/*
+
+# Must come last
+!.keep
