@@ -9,9 +9,6 @@ __pycache__/
 # Specifics
 bin/env
 
-client/**/public/js/**/*
-!client/**/public/js/.keep
-
 server/venv/
 server/.env
 server/tmp/**/*
@@ -19,6 +16,8 @@ server/tmp/**/*
 
 server/ratings/static/ratings/**/*
 !server/ratings/static/ratings/.keep
+
+server/ratings/templates/ratings/**/*
 
 server/staticfiles/**/*
 !server/staticfiles/.keep

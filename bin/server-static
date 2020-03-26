@@ -1,25 +1,29 @@
 #!/bin/bash
 
-# Not compatible with the current CRA
-
-exit
+# Not compatible with the current CRA - Start work on this
 
 ROOTDIR="$1"
 
 cd $ROOTDIR
 
-CLIENT_PATH="$ROOTDIR/client/ratings"
-STATIC_PATH="$ROOTDIR/server/static/ratings"
+CLIENT_PATH="$ROOTDIR/client"
+STATIC_PATH="$ROOTDIR/server/ratings/static/ratings"
+TEMPLATES_PATH="$ROOTDIR/server/ratings/templates/ratings"
 
-printf "\n[*] Cleaning filesystem for building static files"
-if [ -d "$STATIC_PATH/js" ]; then rm -rf "$STATIC_PATH/js"; fi
-if [ -d "$CLIENT_PATH/public/js" ]; then rm -rf "$CLIENT_PATH/public/js"; fi
+printf "\n[*] Cleaning filesystem for building static files\n"
+if [ -d "$CLIENT_PATH/build" ]; then rm -rf "$CLIENT_PATH/build"; fi
+if [ -d "$STATIC_PATH" ]; then rm -rf "$STATIC_PATH"; fi
 
-printf "\n[*] Generating client assets\n\n"
+printf "[*] Building client to generate assets\n\n"
 cd $CLIENT_PATH
 yarn build
+touch "$CLIENT_PATH/build/.keep"
 
-printf "\n[*] Moving content between source and target\n"
-printf "   - Source: $CLIENT_PATH/public\n   - Target: $STATIC_PATH\n"
+printf "\n[*] Moving assets between source and target\n"
+printf "   - Source: $CLIENT_PATH/build\n   - Target: $STATIC_PATH\n\n"
 cd $ROOTDIR
-mv "$CLIENT_PATH/public/js" "$STATIC_PATH/js"
+mv "$CLIENT_PATH/build" "$STATIC_PATH"
+
+printf "[*] Moving index html file to templates folder\n"
+printf "   - Source: $STATIC_PATH\n   - Target: $TEMPLATES_PATH\n\n"
+mv "$STATIC_PATH/index.html" "$TEMPLATES_PATH"
