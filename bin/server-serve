@@ -4,9 +4,7 @@ ROOTDIR="$1"
 
 cd $ROOTDIR/server
 
-$ROOTDIR/bin/server-static $ROOTDIR
-
-printf "[*] Creating and running migrations\n\n"
+printf "\n[*] Creating and running migrations\n\n"
 python manage.py makemigrations
 python manage.py migrate
 

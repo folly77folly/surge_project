@@ -18,6 +18,9 @@ if [ $APP == "server" ]; then
     elif [ $CMD == "install" ]; then
         $ROOTDIR/bin/server-install $ROOTDIR ${@:2}
 
+    elif [ $CMD == "build" ]; then
+        $ROOTDIR/bin/server-static $ROOTDIR
+
     elif [ $CMD == "serve" ]; then
         $ROOTDIR/bin/server-serve $ROOTDIR
 

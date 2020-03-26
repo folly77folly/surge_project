@@ -18,4 +18,5 @@ printf "\n[*] Installing dependencies in requirements.txt\n\n"
 source venv/$BINDIR/activate
 pip install -r requirements.txt
 
+$ROOTDIR/bin/app server build
 $ROOTDIR/bin/app server serve
